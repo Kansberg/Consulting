@@ -2,180 +2,292 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8">
-  <title>Klar til Folkemødet 2025 – Lærervejledning & Opgaver</title>
+  <title>Klar til Folkemødet 2025 – Materiale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Google Fonts for a friendly look -->
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', Arial, sans-serif;
       background: #f6f6f6;
+      color: #232323;
       margin: 0;
       padding: 0;
-      color: #232323;
     }
     .container {
-      max-width: 800px;
-      margin: 2rem auto;
+      max-width: 860px;
+      margin: 2.5rem auto;
+      padding: 2rem 1rem;
       background: #fff;
-      border-radius: 1.5rem;
-      box-shadow: 0 8px 40px rgba(35, 49, 83, 0.08);
-      padding: 2rem 2rem 3rem 2rem;
+      border-radius: 1.3rem;
+      box-shadow: 0 8px 40px rgba(35, 49, 83, 0.09);
     }
-    h1, h2 {
+    h1 {
       text-align: center;
+      color: #145ea8;
+      margin-top: 0.5rem;
+    }
+    /* Accordion styles */
+    .accordion {
+      margin-bottom: 2.5rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(20, 94, 168, 0.07);
+    }
+    .accordion-header {
+      background: #145ea8;
+      color: #fff;
+      padding: 1.1rem 1.5rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+      font-weight: bold;
+    }
+    .accordion-header:hover { background: #0b3954; }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #e9f2fa;
+      transition: max-height 0.3s ease;
+      padding: 0 1.5rem;
+    }
+    .accordion-content.open {
+      padding: 1.5rem;
+      max-height: 1800px;
+      transition: max-height 0.7s cubic-bezier(0.21,0.98,0.6,0.99);
+    }
+    /* Elevopgave styles */
+    .opgave-card {
+      background: #f4f9ff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(20, 94, 168, 0.07);
+      margin-bottom: 2.2rem;
+      padding: 2rem 1.5rem 1.2rem 1.5rem;
+      position: relative;
+    }
+    .opgave-card h2 {
       color: #145ea8;
       margin-top: 0;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    nav a {
-      color: #145ea8;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: #0b3954;
-    }
-    section {
-      margin-bottom: 2.5rem;
-    }
-    .card {
-      background: #e9f2fa;
-      border-radius: 1rem;
-      box-shadow: 0 2px 10px rgba(35, 49, 83, 0.06);
-      padding: 1.3rem 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      transition: box-shadow 0.2s;
-    }
-    .card:hover {
-      box-shadow: 0 6px 20px rgba(20, 94, 168, 0.16);
-    }
-    .card-title {
-      font-weight: bold;
-      color: #145ea8;
+    .opgave-card label {
+      font-weight: 600;
+      display: block;
+      margin-top: 1.2rem;
       margin-bottom: 0.5rem;
-      font-size: 1.12rem;
+      color: #2d2d2d;
     }
-    ul, ol {
-      margin: 0.5rem 0 0.5rem 1.2rem;
+    .opgave-card input[type="text"], .opgave-card textarea {
+      width: 100%;
+      border: 1.2px solid #b7d2ec;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      font-family: inherit;
+      padding: 0.5rem;
+      margin-bottom: 0.7rem;
+      background: #fff;
+      resize: vertical;
+      box-sizing: border-box;
+      transition: border 0.2s;
     }
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem 0.5rem 2rem 0.5rem;
-      }
+    .opgave-card input[type="text"]:focus, .opgave-card textarea:focus {
+      outline: none;
+      border-color: #145ea8;
     }
-    .back-to-top {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #fff;
+    .print-btn {
       background: #145ea8;
-      padding: 0.3rem 1rem;
-      border-radius: 1rem;
-      text-decoration: none;
-      font-size: 0.95rem;
-      float: right;
-      transition: background 0.15s;
+      color: #fff;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      transition: background 0.16s;
     }
-    .back-to-top:hover {
-      background: #0b3954;
+    .print-btn:hover { background: #0b3954; }
+    @media print {
+      body * { visibility: hidden !important; }
+      .opgave-card.printing, .opgave-card.printing * { 
+        visibility: visible !important; 
+      }
+      .opgave-card.printing {
+        position: absolute;
+        left: 0; top: 0; right: 0;
+        margin: 0;
+        background: #fff;
+        box-shadow: none;
+        border-radius: 0;
+        width: 100vw;
+        padding: 2rem 2rem 2rem 2rem;
+      }
+      .print-btn { display: none !important; }
+    }
+    @media (max-width: 650px) {
+      .container { padding: 1rem 0.2rem; }
+      .accordion-header { font-size: 1rem; }
+      .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
+      .print-btn { top: 0.7rem; right: 0.7rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Klar til Folkemødet 2025</h1>
-    <nav>
-      <a href="#laerervejledning">Lærervejledning</a>
-      <a href="#elevopgaver">Elevopgaver</a>
-    </nav>
 
-    <!-- Lærervejledning -->
-    <section id="laerervejledning">
-      <h2>Lærervejledning</h2>
-      <div class="card">
-        <div class="card-title">Målgruppe og Formål</div>
+    <!-- Lærervejledning Accordion -->
+    <div class="accordion" id="laerervejledning-accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        ➔ Lærervejledning – klik for at folde ud/ind
+      </div>
+      <div class="accordion-content">
+        <h2>Undervisningsmateriale: Klar til Folkemødet 2025</h2>
         <p>
           <strong>Målgruppe:</strong> Udskoling (8.-10. klasse)<br>
           <strong>Fag:</strong> Dansk og U&J<br>
           <strong>Varighed:</strong> 2-8 lektioner – kan tilpasses<br>
           <strong>Formål:</strong> Forberedelse til deltagelse i Folkemødet for Unge i Vesthimmerlands Kommune den 18. september 2025
         </p>
-      </div>
-      <div class="card">
-        <div class="card-title">Overordnede kompetencemål</div>
+        <h3>Overordnede kompetencemål</h3>
         <ul>
           <li>Eleverne opnår forståelse for og kendskab til job- og uddannelsesmuligheder i og omkring Vesthimmerlands Kommune.</li>
           <li>Eleverne anvender argumentation og formidling i praksis.</li>
           <li>Eleverne reflekterer over egne valg og karriereperspektiver.</li>
         </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Didaktiske principper</div>
+        <h3>Didaktiske principper</h3>
         <ul>
           <li>Elevinddragelse og medbestemmelse</li>
           <li>Anvendelsesorienteret læring</li>
           <li>Tværfaglighed og samarbejde med UU-vejleder</li>
         </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Forløbets struktur</div>
+        <h3>Forløbets struktur</h3>
         <ol>
-          <li><strong>Introduktion til Folkemødet</strong>: Introducer formål, vis billeder/videoer fra tidligere år, læs programmet for 2025 sammen.</li>
-          <li><strong>Temavalg og gruppearbejde</strong>: Klassen tildeles fire workshops, elever vælger én efter interesse. UU-vejleder kan inddrages til at perspektivere.</li>
-          <li><strong>Research og produktion</strong>: Eleverne laver informationssøgning og udarbejder præsentation, plakat eller spørgsmål. Præsenteres for klassen inden Folkemødet.</li>
-          <li><strong>Formidlingstræning</strong>: Træning i fremlæggelse og visuel formidling. Fælles indsigt i, hvad Folkemødet indebærer.</li>
-          <li><strong>Deltagelse på Folkemødet</strong>: Elever bruger forhåndsviden, stiller spørgsmål og tager billeder undervejs.</li>
-          <li><strong>Efterbearbejdning og refleksion</strong>: Refleksionsskrivning (artikel, essay, dagbog mm.), samtale med UU-vejleder og fælles evaluering.</li>
+          <li>
+            <strong>Introduktion til Folkemødet</strong>
+            <ul>
+              <li>Introducer formålet med Folkemødet for Unge.</li>
+              <li>Vis billeder/videoer fra tidligere arrangementer.</li>
+              <li>Læs programmet for 2025 sammen i klassen.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Temavalg og gruppearbejde</strong>
+            <ul>
+              <li>Klassen tildeles fire workshop af arrangørerne bag Folkemødet for unge.</li>
+              <li>Eleverne vælger enkeltvis eller i grupper én af de tildelte workshops – lad eleverne vælge efter interesse.</li>
+              <li>UU-vejleder kan inddrages til at perspektivere virksomhedernes job- og uddannelsesmuligheder i forhold til unges fremtid og valg.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Research og produktion</strong>
+            <ul>
+              <li>Eleverne laver en informationssøgning og udarbejder én eller flere af nedenstående opgaver:
+                <ul>
+                  <li>Præsentation</li>
+                  <li>Plakat/visuel formidling</li>
+                  <li>Spørgsmål til virksomheden</li>
+                </ul>
+              </li>
+              <li>Opgaverne præsenteres for klassen inden Folkemødet for unge</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Formidlingstræning</strong>
+            <ul>
+              <li>Eleverne træner fremlæggelser, visuel fremstilling og interview.</li>
+              <li>Eleverne får fælles indsigt i og forforståelse for, hvad de bliver præsenteret for på folkemødet.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Deltagelse på Folkemødet for Unge 2025</strong>
+            <ul>
+              <li>Eleverne bruger deres forhåndsviden om virksomheden til at stille spørgsmål til virksomhedens medarbejdere under workshoppen.</li>
+              <li>Eleverne tager billeder under workshoppen, som kan bruges til efterbearbejdningen og evalueringen af deres deltagelse.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Efterbearbejdning og refleksion</strong>
+            <ul>
+              <li>Refleksionsskrivning – reportage, artikel (nyhed/baggrund), essay, brev, dagbog mm.</li>
+              <li>Samtale med UU-vejleder</li>
+              <li>Fælles refleksion på klassen</li>
+              <li>Evaluering – Udsendt fra arrangørerne af Folkemødet for unge</li>
+            </ul>
+          </li>
         </ol>
+        <h3>Kontaktpersoner og samarbejde</h3>
+        <ul>
+          <li>Involver gerne UU-vejleder i planlægning, sparring, deltagelse i forberedelse/efterbearbejdning.</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="card-title">Kontaktpersoner og samarbejde</div>
-        <p>Involver gerne UU-vejleder i planlægning, sparring og deltagelse.</p>
-      </div>
-      <a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Til toppen</a>
-    </section>
+    </div>
 
-    <!-- Elevopgaver -->
-    <section id="elevopgaver">
-      <h2>Elevopgaver</h2>
-      <div class="card">
-        <div class="card-title">1. Præsentation af virksomhed/workshopholder</div>
-        <ul>
-          <li><strong>Gruppe:</strong> ____________ <strong>Dato:</strong> ____________</li>
-          <li><strong>Vores valgte workshop:</strong> ____________________________</li>
-          <li><strong>Hvorfor har vi valgt denne virksomhed/workshopholder?</strong></li>
-          <li><strong>Hvad ved vi allerede om virksomheden/workshopholderen?</strong></li>
-          <li><strong>Hvad vil vi gerne finde ud af?</strong></li>
-          <li><strong>Kilder og ideer vi vil bruge:</strong></li>
-          <li><strong>Hvordan fremlægger vi for klassen:</strong></li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">2. Spørgsmål til virksomheden</div>
-        <ul>
-          <li>Forbered 3-5 spørgsmål, I gerne vil stille på Folkemødet.</li>
-          <li>Overvej, hvordan spørgsmålene kan give jer ny viden om job, uddannelse og virksomheden.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">3. Refleksion efter Folkemødet</div>
-        <ul>
-          <li><strong>Navn:</strong> ___________________ <strong>Dato:</strong> ______________</li>
-          <li><strong>Hvad var det vigtigste, jeg oplevede på Folkemødet?</strong></li>
-          <li><strong>Hvilket indtryk gjorde det på mig at høre medarbejdere/workshopholdere udtale sig?</strong></li>
-          <li><strong>Hvad har jeg lært om virksomheden og mig selv?</strong></li>
-          <li><strong>Hvordan kan jeg bruge denne oplevelse i mine overvejelser om fremtidig uddannelse/job?</strong></li>
-        </ul>
-      </div>
-      <a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Til toppen</a>
-    </section>
+    <!-- Elevopgave 1 -->
+    <div class="opgave-card" id="opgave1">
+      <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
+      <h2>Opgave 1: Præsentation af virksomhed/workshopholder</h2>
+      <label>Gruppe:</label>
+      <input type="text" placeholder="Skriv gruppenavn">
+      <label>Dato:</label>
+      <input type="text" placeholder="Skriv dato">
+      <label>Vores valgte workshop:</label>
+      <input type="text" placeholder="Skriv navn på workshop">
+      <label>1. Hvorfor har vi valgt denne virksomhed/workshopholder?</label>
+      <textarea rows="2" placeholder="Skriv jeres svar"></textarea>
+      <label>2. Hvad ved vi allerede om virksomheden/workshopholderen?</label>
+      <textarea rows="2" placeholder="Skriv jeres svar"></textarea>
+      <label>3. Hvad vil vi gerne finde ud af?</label>
+      <textarea rows="2" placeholder="Skriv jeres svar"></textarea>
+      <label>4. Kilder og ideer vi vil bruge:</label>
+      <textarea rows="2" placeholder="Skriv jeres svar"></textarea>
+      <label>5. Hvordan fremlægger vi for klassen:</label>
+      <textarea rows="2" placeholder="Skriv jeres svar"></textarea>
+    </div>
+
+    <!-- Elevopgave 2 -->
+    <div class="opgave-card" id="opgave3">
+      <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
+      <h2>Opgave 2: Refleksion efter Folkemødet</h2>
+      <label>Navn:</label>
+      <input type="text" placeholder="Skriv dit navn">
+      <label>Dato:</label>
+      <input type="text" placeholder="Skriv dato">
+      <label>1. Hvad var det vigtigste, jeg oplevede på Folkemødet?</label>
+      <textarea rows="2" placeholder="Skriv dit svar"></textarea>
+      <label>2. Hvilket indtryk gjorde det på mig at høre medarbejdere/workshopholdere udtale sig?</label>
+      <textarea rows="2" placeholder="Skriv dit svar"></textarea>
+      <label>3. Hvad har jeg lært om virksomheden og mig selv?</label>
+      <textarea rows="2" placeholder="Skriv dit svar"></textarea>
+      <label>4. Hvordan kan jeg bruge denne oplevelse i mine overvejelser om fremtidig uddannelse/job?</label>
+      <textarea rows="2" placeholder="Skriv dit svar"></textarea>
+    </div>
   </div>
+  <script>
+    // Accordion logic
+    function toggleAccordion(header) {
+      const content = header.nextElementSibling;
+      content.classList.toggle('open');
+      if (content.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+        header.innerHTML = '▼ Lærervejledning – klik for at folde ind';
+      } else {
+        content.style.maxHeight = null;
+        header.innerHTML = '➔ Lærervejledning – klik for at folde ud/ind';
+      }
+    }
+    // Print only this opgave-card
+    function printOpgave(btn) {
+      const card = btn.closest('.opgave-card');
+      card.classList.add('printing');
+      window.print();
+      setTimeout(() => { card.classList.remove('printing'); }, 500);
+    }
+    // Accordion open by default on desktop
+    window.addEventListener('DOMContentLoaded', () => {
+      const accHeader = document.querySelector('.accordion-header');
+      if(window.innerWidth > 700) toggleAccordion(accHeader);
+    });
+  </script>
 </body>
 </html>
