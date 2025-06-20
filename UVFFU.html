@@ -6,21 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: #fff;
-      color: #232323;
+    html, body {
+      height: 100%;
+      width: 100%;
       margin: 0;
       padding: 0;
+      background: #fff !important;
+      overflow-x: hidden !important; /* Ingen X-scroll */
+    }
+    body {
+      background: #fff !important;
+      min-height: 100vh;
+      min-width: 100vw;
+      box-sizing: border-box;
+      overflow-x: hidden !important;
     }
     .container {
-      max-width: 1400px;
+      max-width: 1600px;
+      min-width: 0;
       margin: 2rem auto;
       padding: 2rem 1rem;
-      background: #fff;
+      background: #fff !important;
       border-radius: 1.3rem;
       box-shadow: 0 8px 40px rgba(35, 49, 83, 0.09);
-      width: 96vw;
+      width: 98vw;
+      box-sizing: border-box;
+      overflow-x: hidden !important;
     }
     h1 {
       text-align: center;
@@ -53,12 +64,12 @@
       vertical-align: middle;
       fill: currentColor;
     }
-    /* Accordion styles */
     .accordion {
       margin-bottom: 2.5rem;
       border-radius: 1rem;
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(20, 94, 168, 0.07);
+      background: #fff;
     }
     .accordion-header {
       background: #145ea8;
@@ -83,7 +94,6 @@
       max-height: 1800px;
       transition: max-height 0.7s cubic-bezier(0.21,0.98,0.6,0.99);
     }
-    /* Elevopgave styles */
     .opgave-card {
       background: #f4f9ff;
       border-radius: 1rem;
@@ -91,6 +101,8 @@
       margin-bottom: 2.2rem;
       padding: 2rem 1.5rem 1.2rem 1.5rem;
       position: relative;
+      min-width: 0;
+      overflow-x: hidden !important;
     }
     .opgave-card h2 {
       color: #145ea8;
@@ -115,10 +127,18 @@
       resize: vertical;
       box-sizing: border-box;
       transition: border 0.2s;
+      min-width: 0;
+      overflow-x: hidden !important;
     }
     .opgave-card input[type="text"]:focus, .opgave-card textarea:focus {
       outline: none;
       border-color: #145ea8;
+    }
+    /* Hvis der stadig skulle være overflow på nogle elementer */
+    * {
+      box-sizing: border-box;
+      min-width: 0;
+      overflow-x: hidden !important;
     }
     @media (max-width: 900px) {
       .container { max-width: 99vw; padding: 1rem 0.2rem; }
@@ -131,6 +151,7 @@
         margin: 0 !important;
         padding: 0 !important;
         box-shadow: none !important;
+        overflow-x: hidden !important;
       }
       .container {
         max-width: 17cm !important;
@@ -152,6 +173,7 @@
         color: #000 !important;
         font-size: 12pt !important;
         page-break-inside: avoid !important;
+        overflow-x: hidden !important;
       }
       .print-btn, .print-iframe-btn {
         display: none !important;
@@ -315,6 +337,11 @@
       if (inIframe) {
         document.getElementById('printIframeBtn').style.display = '';
         document.getElementById('printFullBtn').style.display = 'none';
+        // Skaler container hvis pladsen i iframe er lille
+        var container = document.querySelector('.container');
+        if (window.innerWidth < 800) {
+          container.style.width = "100vw";
+        }
       } else {
         document.getElementById('printIframeBtn').style.display = 'none';
         document.getElementById('printFullBtn').style.display = '';
