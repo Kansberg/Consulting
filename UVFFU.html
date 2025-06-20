@@ -107,51 +107,39 @@
       transition: background 0.16s;
     }
     .print-btn:hover { background: #0b3954; }
-    
-@media print {
-  /* Skjul alt fra start */
-  body * { display: none !important; }
-  /* Vis kun det valgte opgavekort */
-  .opgave-card.printing, .opgave-card.printing * {
-    display: block !important;
-    visibility: visible !important;
-  }
-  /* Layout på print */
-  .opgave-card.printing {
-    background: #fff !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin: 0 auto !important;
-    padding: 1cm !important;
-    max-width: 18cm !important;   /* A4 minus margin */
-    width: 100% !important;
-    min-width: 0 !important;
-    position: static !important;
-    page-break-before: auto !important;
-    page-break-after: auto !important;
-    page-break-inside: avoid !important;
-    font-size: 12pt !important;
-  }
-  /* Skjul printknap */
-  .print-btn { display: none !important; }
-  /* Skjul container helt */
-  .container { display: none !important; }
-  /* Ingen baggrund eller andet udenfor */
-  html, body {
-    background: #fff !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
-
-
-    
     @media (max-width: 650px) {
       .container { padding: 1rem 0.2rem; }
       .accordion-header { font-size: 1rem; }
       .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
       .print-btn { top: 0.7rem; right: 0.7rem; }
+    }
+    /* PRINT CSS – FEJLFRI! */
+    @media print {
+      /* Skjul alt på siden til print */
+      body * { display: none !important; }
+      /* Vis kun det valgte opgavekort og dets indhold */
+      .opgave-card.printing, .opgave-card.printing * {
+        display: block !important;
+        visibility: visible !important;
+      }
+      /* Printlayout: Pæn margen og bredde */
+      .opgave-card.printing {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 auto !important;
+        padding: 1.2cm !important;
+        width: 100% !important;
+        max-width: 17cm !important;   /* Giver stor margen på A4 */
+        min-width: 0 !important;
+        position: static !important;
+        page-break-before: auto !important;
+        page-break-after: auto !important;
+        page-break-inside: avoid !important;
+        font-size: 12pt !important;
+      }
+      .print-btn { display: none !important; }
     }
   </style>
 </head>
@@ -268,7 +256,7 @@
       <textarea rows="4"></textarea>
     </div>
 
-    <!-- Elevopgave 2 (NY) -->
+    <!-- Elevopgave 2 -->
     <div class="opgave-card" id="opgave2">
       <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
       <h2>Opgave 2: Spørgsmål til virksomheden</h2>
@@ -310,14 +298,12 @@
       }
     }
     // Print only this opgave-card
-function printOpgave(btn) {
-  const card = btn.closest('.opgave-card');
-  card.classList.add('printing');
-  window.print();
-  setTimeout(() => { card.classList.remove('printing'); }, 500);
-}
-
-
+    function printOpgave(btn) {
+      const card = btn.closest('.opgave-card');
+      card.classList.add('printing');
+      window.print();
+      setTimeout(() => { card.classList.remove('printing'); }, 500);
+    }
     // Accordion open by default on desktop
     window.addEventListener('DOMContentLoaded', () => {
       const accHeader = document.querySelector('.accordion-header');
