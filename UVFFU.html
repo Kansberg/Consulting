@@ -109,34 +109,40 @@
     .print-btn:hover { background: #0b3954; }
     
 @media print {
+  /* Skjul alt fra start */
+  body * { display: none !important; }
+  /* Vis kun det valgte opgavekort */
+  .opgave-card.printing, .opgave-card.printing * {
+    display: block !important;
+    visibility: visible !important;
+  }
+  /* Layout på print */
+  .opgave-card.printing {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 auto !important;
+    padding: 1cm !important;
+    max-width: 18cm !important;   /* A4 minus margin */
+    width: 100% !important;
+    min-width: 0 !important;
+    position: static !important;
+    page-break-before: auto !important;
+    page-break-after: auto !important;
+    page-break-inside: avoid !important;
+    font-size: 12pt !important;
+  }
+  /* Skjul printknap */
+  .print-btn { display: none !important; }
+  /* Skjul container helt */
+  .container { display: none !important; }
+  /* Ingen baggrund eller andet udenfor */
   html, body {
     background: #fff !important;
     margin: 0 !important;
     padding: 0 !important;
-    box-sizing: border-box !important;
-    width: auto !important;
-    height: auto !important;
   }
-  body > * { display: none !important; }
-  .opgave-card.printing {
-    display: block !important;
-    background: #fff !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    width: 100% !important;
-    max-width: 16cm !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-    padding: 1cm 1cm 1cm 1cm !important;
-    color: #222 !important;
-    box-sizing: border-box !important;
-    page-break-before: auto !important;
-    page-break-after: auto !important;
-    page-break-inside: avoid !important;
-    overflow: hidden !important;
-    position: static !important;
-  }
-  .opgave-card.printing * { display: block !important; visibility: visible !important; }
 }
 
 
@@ -310,6 +316,7 @@ function printOpgave(btn) {
   window.print();
   setTimeout(() => { card.classList.remove('printing'); }, 500);
 }
+
 
     // Accordion open by default on desktop
     window.addEventListener('DOMContentLoaded', () => {
