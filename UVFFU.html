@@ -113,33 +113,41 @@
       .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
       .print-btn { top: 0.7rem; right: 0.7rem; }
     }
-    /* PRINT CSS – FEJLFRI! */
     @media print {
-      /* Skjul alt på siden til print */
-      body * { display: none !important; }
-      /* Vis kun det valgte opgavekort og dets indhold */
-      .opgave-card.printing, .opgave-card.printing * {
-        display: block !important;
-        visibility: visible !important;
-      }
-      /* Printlayout: Pæn margen og bredde */
-      .opgave-card.printing {
+      html, body {
         background: #fff !important;
-        color: #000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      .container {
+        max-width: 17cm !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+      .opgave-card {
+        background: #fff !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        margin: 0 auto !important;
+        margin: 0 !important;
         padding: 1.2cm !important;
+        max-width: 17cm !important;
         width: 100% !important;
-        max-width: 17cm !important;   /* Giver stor margen på A4 */
-        min-width: 0 !important;
-        position: static !important;
-        page-break-before: auto !important;
-        page-break-after: auto !important;
-        page-break-inside: avoid !important;
+        color: #000 !important;
         font-size: 12pt !important;
+        page-break-inside: avoid !important;
       }
-      .print-btn { display: none !important; }
+      .print-btn {
+        display: none !important;
+      }
+      /* Skjul alt andet */
+      .accordion,
+      .opgave-card:not(.print-target) {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -297,12 +305,22 @@
         header.innerHTML = '➔ Lærervejledning – klik for at folde ud/ind';
       }
     }
-    // Print only this opgave-card
+    // Print only this opgave-card using DOM kloning (sikker løsning)
     function printOpgave(btn) {
+      // Find det aktuelle opgavekort
       const card = btn.closest('.opgave-card');
-      card.classList.add('printing');
+      // Klon opgavekortet
+      const printCard = card.cloneNode(true);
+      printCard.classList.add('print-target');
+      // Skjul print-knappen på print
+      printCard.querySelector('.print-btn').style.display = 'none';
+      // Gem nuværende body
+      const oldBody = document.body.innerHTML;
+      // Udskift body med KUN det ene kort (og container for margin)
+      document.body.innerHTML = '<div class="container">' + printCard.outerHTML + '</div>';
       window.print();
-      setTimeout(() => { card.classList.remove('printing'); }, 500);
+      // Efter print, reload for at vise alt igen
+      location.reload();
     }
     // Accordion open by default on desktop
     window.addEventListener('DOMContentLoaded', () => {
