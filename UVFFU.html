@@ -107,34 +107,41 @@
       transition: background 0.16s;
     }
     .print-btn:hover { background: #0b3954; }
-    @media print {
-      html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      body * { visibility: hidden !important; }
-      .opgave-card.printing, .opgave-card.printing * { 
-        visibility: visible !important; 
-      }
-      .opgave-card.printing {
-        position: absolute;
-        left: 0; top: 0; right: 0;
-        margin: 0;
-        background: #fff !important;
-        box-shadow: none;
-        border-radius: 0;
-        width: 100vw !important;
-        padding: 2rem 1.5cm 2rem 1.5cm !important;
-        color: #222 !important;
-      }
-      .print-btn { display: none !important; }
-      .accordion, .container { background: #fff !important; box-shadow: none !important; }
-    }
+    
+@media print {
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body * { visibility: hidden !important; }
+  .opgave-card.printing, .opgave-card.printing * { 
+    visibility: visible !important; 
+  }
+  .opgave-card.printing {
+    position: static !important;
+    left: auto !important; top: auto !important; right: auto !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    max-width: 17cm !important;   /* = ca. A4 med margin */
+    min-width: 0 !important;
+    padding: 1.2cm 1.5cm 1.2cm 1.5cm !important; /* Giver ens margin hele vejen rundt */
+    color: #222 !important;
+    page-break-before: auto !important;
+    page-break-after: auto !important;
+    page-break-inside: avoid !important;
+  }
+  .print-btn { display: none !important; }
+  .accordion, .container { background: #fff !important; box-shadow: none !important; }
+}
+    
     @media (max-width: 650px) {
       .container { padding: 1rem 0.2rem; }
       .accordion-header { font-size: 1rem; }
