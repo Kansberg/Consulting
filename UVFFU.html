@@ -113,41 +113,37 @@
       .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
       .print-btn { top: 0.7rem; right: 0.7rem; }
     }
-    @media print {
-      html, body {
-        background: #fff !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-      }
-      .container {
-        max-width: 17cm !important;
-        margin: 0 auto !important;
-        box-shadow: none !important;
-        background: #fff !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-      }
-      .opgave-card {
-        background: #fff !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        padding: 1.2cm !important;
-        max-width: 17cm !important;
-        width: 100% !important;
-        color: #000 !important;
-        font-size: 12pt !important;
-        page-break-inside: avoid !important;
-      }
-      .print-btn {
-        display: none !important;
-      }
-      /* Skjul alt andet */
-      .accordion,
-      .opgave-card:not(.print-target) {
-        display: none !important;
-      }
+@media print {
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .container {
+    margin: 0 auto !important;
+    max-width: 17cm !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+  .opgave-card {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 auto !important;
+    padding: 0.8cm 1.2cm 0.8cm 1.2cm !important; /* Top, højre, bund, venstre */
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: 12pt !important;
+    page-break-inside: avoid !important;
+  }
+  .print-btn { display: none !important; }
+  .accordion,
+  .opgave-card:not(.print-target) { display: none !important; }
+}
+
     }
   </style>
 </head>
