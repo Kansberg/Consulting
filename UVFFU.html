@@ -117,17 +117,14 @@
     width: auto !important;
     height: auto !important;
   }
-  body * { visibility: hidden !important; }
-  .opgave-card.printing, .opgave-card.printing * {
-    visibility: visible !important;
-  }
+  body > * { display: none !important; }
   .opgave-card.printing {
-    position: static !important;
+    display: block !important;
     background: #fff !important;
     box-shadow: none !important;
     border-radius: 0 !important;
-    width: auto !important;
-    max-width: 16cm !important;    /* Sikrer plads til browserens margin på A4 (21cm) */
+    width: 100% !important;
+    max-width: 16cm !important;
     min-width: 0 !important;
     margin: 0 auto !important;
     padding: 1cm 1cm 1cm 1cm !important;
@@ -137,14 +134,11 @@
     page-break-after: auto !important;
     page-break-inside: avoid !important;
     overflow: hidden !important;
+    position: static !important;
   }
-  .print-btn { display: none !important; }
-  .container, .accordion {
-    background: #fff !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
+  .opgave-card.printing * { display: block !important; visibility: visible !important; }
 }
+
 
     
     @media (max-width: 650px) {
@@ -310,12 +304,13 @@
       }
     }
     // Print only this opgave-card
-    function printOpgave(btn) {
-      const card = btn.closest('.opgave-card');
-      card.classList.add('printing');
-      window.print();
-      setTimeout(() => { card.classList.remove('printing'); }, 500);
-    }
+function printOpgave(btn) {
+  const card = btn.closest('.opgave-card');
+  card.classList.add('printing');
+  window.print();
+  setTimeout(() => { card.classList.remove('printing'); }, 500);
+}
+
     // Accordion open by default on desktop
     window.addEventListener('DOMContentLoaded', () => {
       const accHeader = document.querySelector('.accordion-header');
