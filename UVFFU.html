@@ -14,17 +14,44 @@
       padding: 0;
     }
     .container {
-      max-width: 860px;
-      margin: 2.5rem auto;
+      max-width: 1400px;
+      margin: 2rem auto;
       padding: 2rem 1rem;
       background: #fff;
       border-radius: 1.3rem;
       box-shadow: 0 8px 40px rgba(35, 49, 83, 0.09);
+      width: 96vw;
     }
     h1 {
       text-align: center;
       color: #145ea8;
       margin-top: 0.5rem;
+    }
+    .print-iframe-btn, .print-btn {
+      background: #145ea8;
+      color: #fff;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      transition: background 0.16s;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      box-shadow: 0 2px 8px #0002;
+    }
+    .print-iframe-btn:hover, .print-btn:hover { background: #0b3954; }
+    .print-iframe-btn svg, .print-btn svg {
+      width: 1.2em;
+      height: 1.2em;
+      display: inline-block;
+      vertical-align: middle;
+      fill: currentColor;
     }
     /* Accordion styles */
     .accordion {
@@ -93,63 +120,56 @@
       outline: none;
       border-color: #145ea8;
     }
-    .print-btn {
-      background: #145ea8;
-      color: #fff;
-      border: none;
-      border-radius: 1.5rem;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      transition: background 0.16s;
-    }
-    .print-btn:hover { background: #0b3954; }
-    @media (max-width: 650px) {
-      .container { padding: 1rem 0.2rem; }
+    @media (max-width: 900px) {
+      .container { max-width: 99vw; padding: 1rem 0.2rem; }
       .accordion-header { font-size: 1rem; }
       .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
-      .print-btn { top: 0.7rem; right: 0.7rem; }
     }
-@media print {
-  html, body {
-    background: #fff !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .container {
-    margin: 0 auto !important;
-    max-width: 18cm !important;
-    background: #fff !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-  }
-  .opgave-card {
-    background: #fff !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin: 0 auto !important;
-    padding: 0 !important; /* Top, højre, bund, venstre */
-    max-width: 100% !important;
-    width: 100% !important;
-    font-size: 12pt !important;
-    page-break-inside: avoid !important;
-  }
-  .print-btn { display: none !important; }
-  .accordion,
-  .opgave-card:not(.print-target) { display: none !important; }
-}
-
+    @media print {
+      html, body {
+        background: #fff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      .container {
+        max-width: 17cm !important;
+        margin: 0 auto !important;
+        box-shadow: none !important;
+        background: #fff !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+      }
+      .opgave-card {
+        background: #fff !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        padding: 1.2cm !important;
+        max-width: 17cm !important;
+        width: 100% !important;
+        color: #000 !important;
+        font-size: 12pt !important;
+        page-break-inside: avoid !important;
+      }
+      .print-btn, .print-iframe-btn {
+        display: none !important;
+      }
+      .accordion,
+      .opgave-card:not(.print-target) { display: none !important; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Klar til Folkemødet 2025</h1>
+
+    <!-- Print-ikon til iframe-visning -->
+    <button class="print-iframe-btn" id="printIframeBtn" style="display:none;" title="Åbn opgaven i ny fane for udskrivning">
+      <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
+      Udskriv opgave
+    </button>
 
     <!-- Lærervejledning Accordion -->
     <div class="accordion" id="laerervejledning-accordion">
@@ -240,7 +260,10 @@
 
     <!-- Elevopgave 1 -->
     <div class="opgave-card" id="opgave1">
-      <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
+      <button class="print-btn" onclick="printOpgave(this)" title="Udskriv kun denne opgave">
+        <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
+        Udskriv opgave
+      </button>
       <h2>Opgave 1: Præsentation af virksomhed/workshopholder</h2>
       <label>Gruppe:</label>
       <input type="text">
@@ -262,7 +285,10 @@
 
     <!-- Elevopgave 2 -->
     <div class="opgave-card" id="opgave2">
-      <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
+      <button class="print-btn" onclick="printOpgave(this)" title="Udskriv kun denne opgave">
+        <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
+        Udskriv opgave
+      </button>
       <h2>Opgave 2: Spørgsmål til virksomheden</h2>
       <label>Forbered 3-5 spørgsmål, I gerne vil stille på Folkemødet:</label>
       <textarea rows="4"></textarea>
@@ -272,7 +298,10 @@
 
     <!-- Elevopgave 3 -->
     <div class="opgave-card" id="opgave3">
-      <button class="print-btn" onclick="printOpgave(this)">Udskriv opgave</button>
+      <button class="print-btn" onclick="printOpgave(this)" title="Udskriv kun denne opgave">
+        <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
+        Udskriv opgave
+      </button>
       <h2>Opgave 3: Refleksion efter Folkemødet</h2>
       <label>Navn:</label>
       <input type="text">
@@ -289,6 +318,25 @@
     </div>
   </div>
   <script>
+    // Vis print-ikon hvis vi er i en iframe (og ikke hovedvindue)
+    window.addEventListener('DOMContentLoaded', function () {
+      var inIframe = window.self !== window.top;
+      if (inIframe) {
+        document.querySelectorAll('.print-btn').forEach(btn => btn.style.display = 'none');
+        document.getElementById('printIframeBtn').style.display = '';
+      } else {
+        document.getElementById('printIframeBtn').style.display = 'none';
+      }
+      // Accordion open by default on desktop
+      const accHeader = document.querySelector('.accordion-header');
+      if (window.innerWidth > 700) toggleAccordion(accHeader);
+    });
+
+    // Print-knap i iframe: åbner siden i ny fane
+    document.getElementById('printIframeBtn').onclick = function() {
+      window.open(window.location.href, '_blank');
+    };
+
     // Accordion logic
     function toggleAccordion(header) {
       const content = header.nextElementSibling;
@@ -301,28 +349,17 @@
         header.innerHTML = '➔ Lærervejledning – klik for at folde ud/ind';
       }
     }
-    // Print only this opgave-card using DOM kloning (sikker løsning)
+    // Print only this opgave-card using DOM kloning
     function printOpgave(btn) {
-      // Find det aktuelle opgavekort
       const card = btn.closest('.opgave-card');
-      // Klon opgavekortet
       const printCard = card.cloneNode(true);
       printCard.classList.add('print-target');
-      // Skjul print-knappen på print
       printCard.querySelector('.print-btn').style.display = 'none';
-      // Gem nuværende body
       const oldBody = document.body.innerHTML;
-      // Udskift body med KUN det ene kort (og container for margin)
       document.body.innerHTML = '<div class="container">' + printCard.outerHTML + '</div>';
       window.print();
-      // Efter print, reload for at vise alt igen
       location.reload();
     }
-    // Accordion open by default on desktop
-    window.addEventListener('DOMContentLoaded', () => {
-      const accHeader = document.querySelector('.accordion-header');
-      if(window.innerWidth > 700) toggleAccordion(accHeader);
-    });
   </script>
 </body>
 </html>
