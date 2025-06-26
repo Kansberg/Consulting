@@ -4,205 +4,57 @@
   <meta charset="UTF-8">
   <title>Klar til Folkemødet 2025 – Materiale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background: #fff !important;
-      overflow-x: hidden !important;
-    }
-    body {
-      font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important;
-      background: #fff !important;
-      min-height: 100vh;
-      min-width: 100vw;
-      box-sizing: border-box;
-      overflow-x: hidden !important;
-    }
-    .container {
-      max-width: 1600px;
-      min-width: 0;
-      margin: 2rem auto;
-      padding: 2rem 1rem;
-      background: #fff !important;
-      border-radius: 1.3rem;
-      box-shadow: 0 8px 40px rgba(35, 49, 83, 0.09);
-      width: 98vw;
-      box-sizing: border-box;
-      overflow-x: hidden !important;
-    }
-    h1 {
-      text-align: center;
-      color: #145ea8;
-      margin-top: 0.5rem;
-      font-family: inherit;
-      font-weight: 700;
-    }
-    .print-iframe-btn, .print-btn {
-      background: #145ea8;
-      color: #fff;
-      border: none;
-      border-radius: 1.5rem;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      transition: background 0.16s;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      box-shadow: 0 2px 8px #0002;
-      font-family: inherit;
-    }
-    .print-iframe-btn:hover, .print-btn:hover { background: #0b3954; }
-    .print-iframe-btn svg, .print-btn svg {
-      width: 1.2em;
-      height: 1.2em;
-      display: inline-block;
-      vertical-align: middle;
-      fill: currentColor;
-    }
-    .accordion {
-      margin-bottom: 2.5rem;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(20, 94, 168, 0.07);
-      background: #fff;
-      font-family: inherit;
-    }
-    .accordion-header {
-      background: #145ea8;
-      color: #fff;
-      padding: 1.1rem 1.5rem;
-      font-size: 1.1rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.2s;
-      font-weight: bold;
-      font-family: inherit;
-    }
-    .accordion-header:hover { background: #0b3954; }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
+    html, body { height: 100%; width: 100%; margin: 0; padding: 0; background: #fff !important; overflow-x: hidden !important;}
+    body { font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important; background: #fff !important; min-height: 100vh; min-width: 100vw; box-sizing: border-box; overflow-x: hidden !important;}
+    .container { max-width: 1600px; min-width: 0; margin: 2rem auto; padding: 2rem 1rem; background: #fff !important; border-radius: 1.3rem; box-shadow: 0 8px 40px rgba(35, 49, 83, 0.09); width: 98vw; box-sizing: border-box; overflow-x: hidden !important;}
+    h1 { text-align: center; color: #145ea8; margin-top: 0.5rem; font-family: inherit; font-weight: 700;}
+    .intro-note {
       background: #e9f2fa;
-      transition: max-height 0.3s ease;
-      padding: 0 1.5rem;
+      border-left: 5px solid #145ea8;
+      padding: 1.1rem 1.3rem;
+      margin: 1.3rem 0 2.3rem 0;
+      border-radius: 0.8rem;
+      color: #22324b;
+      font-size: 1.09rem;
       font-family: inherit;
     }
-    .accordion-content.open {
-      padding: 1.5rem;
-      max-height: 1800px;
-      transition: max-height 0.7s cubic-bezier(0.21,0.98,0.6,0.99);
-    }
-    .opgave-card {
-      background: #f4f9ff;
-      border-radius: 1rem;
-      box-shadow: 0 2px 12px rgba(20, 94, 168, 0.07);
-      margin-bottom: 2.2rem;
-      padding: 2rem 1.5rem 1.2rem 1.5rem;
-      position: relative;
-      min-width: 0;
-      overflow-x: hidden !important;
-      font-family: inherit;
-    }
-    .opgave-card h2 {
-      color: #145ea8;
-      margin-top: 0;
-      font-family: inherit;
-      font-weight: 700;
-    }
-    .opgave-card label {
-      font-weight: 600;
-      display: block;
-      margin-top: 1.2rem;
-      margin-bottom: 0.5rem;
-      color: #2d2d2d;
-      font-family: inherit;
-    }
-    .opgave-card input[type="text"], .opgave-card textarea {
-      width: 100%;
-      border: 1.2px solid #b7d2ec;
-      border-radius: 0.4rem;
-      font-size: 1rem;
-      font-family: inherit;
-      padding: 0.5rem;
-      margin-bottom: 0.7rem;
-      background: #fff;
-      resize: vertical;
-      box-sizing: border-box;
-      transition: border 0.2s;
-      min-width: 0;
-      overflow-x: hidden !important;
-    }
-    .opgave-card input[type="text"]:focus, .opgave-card textarea:focus {
-      outline: none;
-      border-color: #145ea8;
-    }
-    * {
-      box-sizing: border-box;
-      min-width: 0;
-      overflow-x: hidden !important;
-      font-family: inherit;
-    }
-    @media (max-width: 900px) {
-      .container { max-width: 99vw; padding: 1rem 0.2rem; }
-      .accordion-header { font-size: 1rem; }
-      .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; }
-    }
+    .print-iframe-btn, .print-btn { background: #145ea8; color: #fff; border: none; border-radius: 1.5rem; padding: 0.5rem 1.2rem; font-size: 1rem; cursor: pointer; position: absolute; top: 1.5rem; right: 1.5rem; transition: background 0.16s; z-index: 10; display: flex; align-items: center; gap: 0.5em; box-shadow: 0 2px 8px #0002; font-family: inherit;}
+    .print-iframe-btn:hover, .print-btn:hover { background: #0b3954; }
+    .print-iframe-btn svg, .print-btn svg { width: 1.2em; height: 1.2em; display: inline-block; vertical-align: middle; fill: currentColor;}
+    .accordion { margin-bottom: 2.5rem; border-radius: 1rem; overflow: hidden; box-shadow: 0 2px 10px rgba(20, 94, 168, 0.07); background: #fff; font-family: inherit;}
+    .accordion-header { background: #145ea8; color: #fff; padding: 1.1rem 1.5rem; font-size: 1.1rem; cursor: pointer; user-select: none; transition: background 0.2s; font-weight: bold; font-family: inherit;}
+    .accordion-header:hover { background: #0b3954; }
+    .accordion-content { max-height: 0; overflow: hidden; background: #e9f2fa; transition: max-height 0.3s ease; padding: 0 1.5rem; font-family: inherit;}
+    .accordion-content.open { padding: 1.5rem; max-height: 1800px; transition: max-height 0.7s cubic-bezier(0.21,0.98,0.6,0.99);}
+    .opgave-card { background: #f4f9ff; border-radius: 1rem; box-shadow: 0 2px 12px rgba(20, 94, 168, 0.07); margin-bottom: 2.2rem; padding: 2rem 1.5rem 1.2rem 1.5rem; position: relative; min-width: 0; overflow-x: hidden !important; font-family: inherit;}
+    .opgave-card h2 { color: #145ea8; margin-top: 0; font-family: inherit; font-weight: 700;}
+    .opgave-card label { font-weight: 600; display: block; margin-top: 1.2rem; margin-bottom: 0.5rem; color: #2d2d2d; font-family: inherit;}
+    .opgave-card input[type="text"], .opgave-card textarea { width: 100%; border: 1.2px solid #b7d2ec; border-radius: 0.4rem; font-size: 1rem; font-family: inherit; padding: 0.5rem; margin-bottom: 0.7rem; background: #fff; resize: vertical; box-sizing: border-box; transition: border 0.2s; min-width: 0; overflow-x: hidden !important;}
+    .opgave-card input[type="text"]:focus, .opgave-card textarea:focus { outline: none; border-color: #145ea8;}
+    * { box-sizing: border-box; min-width: 0; overflow-x: hidden !important; font-family: inherit;}
+    @media (max-width: 900px) { .container { max-width: 99vw; padding: 1rem 0.2rem; } .accordion-header { font-size: 1rem; } .opgave-card { padding: 1.2rem 0.5rem 0.8rem 0.5rem; } }
     @media print {
-      html, body {
-        background: #fff !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        overflow-x: hidden !important;
-        font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important;
-      }
-      .container {
-        max-width: 17cm !important;
-        margin: 0 auto !important;
-        box-shadow: none !important;
-        background: #fff !important;
-        padding: 0 !important;
-        border-radius: 0 !important;
-        width: 100% !important;
-      }
-      .opgave-card {
-        background: #fff !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        padding: 1.2cm !important;
-        max-width: 17cm !important;
-        width: 100% !important;
-        color: #000 !important;
-        font-size: 12pt !important;
-        page-break-inside: avoid !important;
-        overflow-x: hidden !important;
-        font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important;
-      }
-      .print-btn, .print-iframe-btn {
-        display: none !important;
-      }
+      html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; overflow-x: hidden !important; font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important; }
+      .container { max-width: 17cm !important; margin: 0 auto !important; box-shadow: none !important; background: #fff !important; padding: 0 !important; border-radius: 0 !important; width: 100% !important;}
+      .opgave-card { background: #fff !important; box-shadow: none !important; border-radius: 0 !important; margin: 0 !important; padding: 1.2cm !important; max-width: 17cm !important; width: 100% !important; color: #000 !important; font-size: 12pt !important; page-break-inside: avoid !important; overflow-x: hidden !important; font-family: 'Inter', Inter, Arial, 'Segoe UI', 'Helvetica Neue', sans-serif !important;}
+      .print-btn, .print-iframe-btn { display: none !important;}
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Klar til Folkemødet 2025</h1>
-
+    <!-- Ny forklarende note efter mailkorrespondancen -->
+    <div class="intro-note">
+      <strong>Bemærk:</strong><br>
+      Klassen får <b>fire workshops tildelt</b> af arrangørerne bag Folkemødet for unge. <br>
+      Eleverne (alene eller i grupper) <b>vælger én af de tildelte workshops</b> at arbejde med. Man vælger altså ikke frit blandt alle workshops, men <b>vælger én blandt de fire, klassen har fået</b>. Hvis I vil arbejde med flere workshops, kan opgaverne kopieres og udfyldes for hver workshop.<br><br>
+      <i>Se evt. korrespondancen mellem Ida Plovbøl Pedersen og Søren Toft Mølgaard, juni 2025.</i>
+    </div>
     <!-- Print-ikon til iframe-visning -->
     <button class="print-iframe-btn" id="printIframeBtn" style="display:none;" title="Åbn materialet i ny fane for udskrivning">
       <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
@@ -213,7 +65,6 @@
       <svg viewBox="0 0 24 24"><path d="M17 19v-5H7v5H2V8a2 2 0 0 1 2-2h3V3h10v3h3a2 2 0 0 1 2 2v11h-5zm0-14H7v3h10V5zm3 3h-3v1H7V8H4v11h5v-5h6v5h5V8zm-9 10h4v4h-4v-4z"/></svg>
       Udskriv
     </button>
-
     <!-- Lærervejledning Accordion -->
     <div class="accordion" id="laerervejledning-accordion">
       <div class="accordion-header" onclick="toggleAccordion(this)">
@@ -308,9 +159,9 @@
       <input type="text">
       <label>Dato:</label>
       <input type="text">
-      <label>Vores valgte workshop:</label>
+      <label>Den workshop vi har valgt blandt de fire tildelte:</label>
       <input type="text">
-      <label>1. Hvorfor har vi valgt denne virksomhed/workshopholder?</label>
+      <label>1. Hvorfor valgte vi denne af de tildelte workshops?</label>
       <textarea rows="4"></textarea>
       <label>2. Hvad ved vi allerede om virksomheden/workshopholderen?</label>
       <textarea rows="4"></textarea>
@@ -320,12 +171,15 @@
       <textarea rows="4"></textarea>
       <label>5. Hvordan fremlægger vi for klassen:</label>
       <textarea rows="4"></textarea>
+      <div style="margin-top:1.5rem; color:#506080; font-size:0.98em;">
+        <em>NB: Hvis I vil arbejde med flere af de tildelte workshops, kan I kopiere opgaven og udfylde den for hver workshop.</em>
+      </div>
     </div>
 
     <!-- Elevopgave 2 -->
     <div class="opgave-card" id="opgave2">
       <h2>Opgave 2: Spørgsmål til virksomheden</h2>
-      <label>Forbered 3-5 spørgsmål, I gerne vil stille på Folkemødet:</label>
+      <label>Forbered 3-5 spørgsmål til den workshop, I har valgt blandt de tildelte:</label>
       <textarea rows="4"></textarea>
       <label>Hvordan kan spørgsmålene give jer ny viden om job, uddannelse og virksomheden?</label>
       <textarea rows="4"></textarea>
